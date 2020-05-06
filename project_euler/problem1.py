@@ -2,6 +2,7 @@
 # ------------------------------------------------------------------------------
 # Find the sum of all the multiples of 3 or 5 below 1000
 #
+# Answer: 233168
 
 
 def multiples_up_to(n,end):
@@ -14,4 +15,6 @@ def multiples_up_to(n,end):
         i += 1
     return multiples
   
-  answer = sum(multiples_up_to(3,1000), multiples_up_to(5,1000))
+# change the list to a set, which removes duplicates
+answer = sum(set(multiples_up_to(3,1000) + multiples_up_to(5,1000)))
+print(answer)
