@@ -3,19 +3,28 @@
 # Find the sum of all the even-valued terms in Fibonacci sequence which do not
 # exceed 4 million
 #
-# Answer:
+# Answer: 4613732
 
 def fibonacci_up_to(n):
     """Returns list of fibonacci numbers up to n"""
-    if n<2:
-        # base case
-        return [1,1]
+    fib_list = []
+    i = 0
+    while fib(i) < n:
+        fib_list.append(fib(i))
+        i += 1
+    return fib_list
+
+
+def fib(n):
+    """Returns the nth fibonacci number"""
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
     else:
-        list = fibonacci_up_to(n-1)
-        if list[-1] < n:
-            # add the next fibonacci number to the list, sum of last two nums
-            list.append(list[-1] + list[-2])
-        return list
+        # find the next fib. number based on def of fibonacci sequence
+        return fib(n-1) + fib(n-2)
+
 
 def even_check(list):
     """Returns a list with only even numbers"""
@@ -26,5 +35,5 @@ def even_check(list):
             even_list.append(list[i])
     return even_list
 
-answer = even_check(fibonacci_up_to(1000))
+answer = sum(even_check(fibonacci_up_to(4000000)))
 print(answer)
